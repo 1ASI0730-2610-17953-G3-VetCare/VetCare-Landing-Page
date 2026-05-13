@@ -32,8 +32,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private themeSubscription: Subscription | null = null;
   private countAnimationStarted = false;
   private observer: IntersectionObserver | null = null;
-  // TODO: Reemplaza con la URL de tu aplicación
-  readonly appUrl = 'https://TODO-APP-URL';
+  readonly appUrl = 'https://vtcare.netlify.app';
 
   constructor(
     private themeService: ThemeService,
