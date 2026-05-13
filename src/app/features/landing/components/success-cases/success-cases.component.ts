@@ -45,8 +45,7 @@ declare var AOS: any;
 export class SuccessCasesComponent implements OnInit, AfterViewInit {
   cases: SuccessCase[] = [];
   brands: Brand[] = [];
-  // TODO: Reemplaza con la URL de tu aplicación
-  readonly appUrl = 'https://TODO-APP-URL';
+  readonly appUrl = 'https://vtcare.netlify.app';
 
    openApp(): void {
     window.open(this.appUrl, '_blank');
