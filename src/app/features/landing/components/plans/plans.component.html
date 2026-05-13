@@ -52,31 +52,43 @@
           <!-- Plan Price -->
           <div class="plan-price">
             <div class="price-container">
-              <span class="currency" *ngIf="plan.price !== 0">$</span>
-              <span class="amount">
-                {{
-                  plan.price === 0
-                    ? ("PLANS.FREE" | translate)
-                    : billingPeriod === "yearly"
-                    ? (calculateYearlyPrice(plan.price) | number : "1.0-2")
-                    : plan.price
-                }}
+              <span class="amount" *ngIf="plan.price === 0">
+                {{ "PLANS.FREE" | translate }}
               </span>
-              <span class="period" *ngIf="plan.price !== 0">
-                /
-                {{
-                  billingPeriod === "yearly"
-                    ? ("PLANS.YEAR" | translate)
-                    : ("PLANS.MONTH" | translate)
-                }}
-              </span>
+              <ng-container *ngIf="plan.price !== 0">
+                <span class="amount">
+                  {{
+                    getDisplayPrice(plan)
+                      | currency
+                        : currencyCode
+                        : "symbol-narrow"
+                        : "1.0-2"
+                        : displayLocale
+                  }}
+                </span>
+                <span class="period">
+                  /
+                  {{
+                    billingPeriod === "yearly"
+                      ? ("PLANS.YEAR" | translate)
+                      : ("PLANS.MONTH" | translate)
+                  }}
+                </span>
+              </ng-container>
             </div>
             <div
               class="price-note"
               *ngIf="billingPeriod === 'yearly' && plan.price !== 0"
             >
               {{ "PLANS.SAVE" | translate }}
-              {{ calculateSavings(plan.price) | currency }}
+              {{
+                toDisplayAmount(calculateSavings(plan.price))
+                  | currency
+                    : currencyCode
+                    : "symbol-narrow"
+                    : "1.0-2"
+                    : displayLocale
+              }}
             </div>
           </div>
 
