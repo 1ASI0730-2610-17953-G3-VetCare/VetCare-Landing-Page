@@ -122,8 +122,7 @@ export class PlansComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleFaq(index: number): void {
     this.faqs[index].isOpen = !this.faqs[index].isOpen;
   }
-  // TODO: Reemplaza con la URL de tu aplicación
-  readonly appUrl = 'https://TODO-APP-URL';
+  readonly appUrl = 'https://vtcare.netlify.app';
 
    openApp(): void {
     window.open(this.appUrl, '_blank');
