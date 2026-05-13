@@ -65,7 +65,7 @@ export class SuccessCasesComponent implements OnInit, AfterViewInit {
         id: 'case1',
         titleKey: 'SUCCESS_CASES.CASE1_TITLE',
         categoryKey: 'SUCCESS_CASES.CATEGORY_X',
-        image: '../../../../../assets/images/case1.png',
+        image: 'assets/images/case1.png',
         descKey: 'SUCCESS_CASES.CASE1_DESC',
         stats: [
         ],
@@ -74,7 +74,7 @@ export class SuccessCasesComponent implements OnInit, AfterViewInit {
         id: 'case2',
         titleKey: 'SUCCESS_CASES.CASE2_TITLE',
         categoryKey: 'SUCCESS_CASES.CATEGORY_Y',
-        image: '../../../../../assets/images/case2.png',
+        image: 'assets/images/case2.png',
         descKey: 'SUCCESS_CASES.CASE2_DESC',
         stats: [
         ],
@@ -83,7 +83,7 @@ export class SuccessCasesComponent implements OnInit, AfterViewInit {
         id: 'case3',
         titleKey: 'SUCCESS_CASES.CASE3_TITLE',
         categoryKey: 'SUCCESS_CASES.CATEGORY_Z',
-        image: '../../../../../assets/images/case3.png',
+        image: 'assets/images/case3.png',
         descKey: 'SUCCESS_CASES.CASE3_DESC',
         stats: [
         ],
