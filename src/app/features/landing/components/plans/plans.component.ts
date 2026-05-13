@@ -1,9 +1,15 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 interface PlanFeature {
   key: string;
@@ -41,14 +47,32 @@ declare var AOS: any;
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.scss'],
 })
-export class PlansComponent implements OnInit, AfterViewInit {
+export class PlansComponent implements OnInit, AfterViewInit, OnDestroy {
+  /** Precios en `initializePlans` están en USD. Para ES se muestran en PEN. */
+  private readonly penPerUsd = 3.75;
+
   plans: Plan[] = [];
   faqs: FAQ[] = [];
   billingPeriod: 'monthly' | 'yearly' = 'monthly';
+  currentLang = 'es';
+  private langSubscription: Subscription | null = null;
+
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
+    this.currentLang =
+      this.translate.currentLang ||
+      this.translate.getDefaultLang() ||
+      'es';
+    this.langSubscription = this.translate.onLangChange.subscribe((e) => {
+      this.currentLang = e.lang;
+    });
     this.initializePlans();
     this.initializeFaqs();
+  }
+
+  ngOnDestroy(): void {
+    this.langSubscription?.unsubscribe();
   }
 
   ngAfterViewInit(): void {
@@ -69,6 +93,30 @@ export class PlansComponent implements OnInit, AfterViewInit {
     const regularYearlyPrice = monthlyPrice * 12;
     const discountedYearlyPrice = this.calculateYearlyPrice(monthlyPrice);
     return regularYearlyPrice - discountedYearlyPrice;
+  }
+
+  get currencyCode(): string {
+    return this.currentLang === 'en' ? 'USD' : 'PEN';
+  }
+
+  get displayLocale(): string {
+    return this.currentLang === 'en' ? 'en-US' : 'es-PE';
+  }
+
+  /** Convierte un monto en USD al que se muestra según idioma (PEN si ES). */
+  toDisplayAmount(usdAmount: number): number {
+    return this.currentLang === 'es' ? usdAmount * this.penPerUsd : usdAmount;
+  }
+
+  getDisplayPrice(plan: Plan): number {
+    if (plan.price === 0) {
+      return 0;
+    }
+    const usd =
+      this.billingPeriod === 'yearly'
+        ? this.calculateYearlyPrice(plan.price)
+        : plan.price;
+    return this.toDisplayAmount(usd);
   }
 
   toggleFaq(index: number): void {
