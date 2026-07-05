@@ -87,7 +87,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
   isDarkMode = false;
 
   constructor(private themeService: ThemeService) {}
-  readonly appUrl = 'https://vtcare.netlify.app';
+  readonly appUrl = 'https://dulcet-kringle-03e195.netlify.app/login';
 
    openApp(): void {
     window.open(this.appUrl, '_blank');

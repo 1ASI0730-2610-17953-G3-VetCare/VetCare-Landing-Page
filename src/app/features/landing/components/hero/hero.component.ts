@@ -32,7 +32,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private themeSubscription: Subscription | null = null;
   private countAnimationStarted = false;
   private observer: IntersectionObserver | null = null;
-  readonly appUrl = 'https://vtcare.netlify.app';
+  readonly appUrl = 'https://dulcet-kringle-03e195.netlify.app/login';
 
   constructor(
     private themeService: ThemeService,

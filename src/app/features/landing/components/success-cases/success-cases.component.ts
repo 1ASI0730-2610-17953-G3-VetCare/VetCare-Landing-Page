@@ -45,7 +45,7 @@ declare var AOS: any;
 export class SuccessCasesComponent implements OnInit, AfterViewInit {
   cases: SuccessCase[] = [];
   brands: Brand[] = [];
-  readonly appUrl = 'https://vtcare.netlify.app';
+  readonly appUrl = 'https://dulcet-kringle-03e195.netlify.app/login';
 
    openApp(): void {
     window.open(this.appUrl, '_blank');
