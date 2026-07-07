@@ -14,9 +14,8 @@ declare var AOS: any;
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements AfterViewInit {
-  // TODO: Reemplaza con los videos del nuevo proyecto
-  productVideoUrl = 'https://www.youtube.com/embed/TODO-PRODUCT-VIDEO-ID';
-  teamVideoUrl = 'https://www.youtube.com/embed/TODO-TEAM-VIDEO-ID';
+  productVideoUrl = 'https://www.youtube.com/embed/d6R_YxO10FU';
+  teamVideoUrl = 'https://www.youtube.com/embed/T58SeHg4-5w';
 
   ngAfterViewInit(): void {
     // AOS se inicializa centralmente en LandingComponent
